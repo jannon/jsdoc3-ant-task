@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<antlib>
+
+	<taskdef name="jsdoc3" classname="net.jannon.ant.tasks.JsDoc3" />
+
+</antlib>

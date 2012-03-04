@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="test" basedir="." name="jsdoc3-ant-task">
+	
+    <property file="build.properties" />
+	
+	<target name="clean" description="Clean up">
+		<delete dir="${build.dir}" />
+	</target>
+	
+    <target name="init" description="Init tasks" depends="clean">
+    	<mkdir dir="${build.dir}" />
+    </target>
+    
+	<target name="compile" description="Compile source files" depends="init">
+		<mkdir dir="${bin.dir}" />
+        <javac srcdir="${src.dir}" 
+        	destdir="${bin.dir}" 
+        	classpath="${ant.jar.location}:${rhino.jar.location}" 
+        	includeAntRuntime="false"/>
+	</target>
+	
+	<target name="javadoc" depends="clean, init">
+		<javadoc sourcepath="${src.dir}" destdir="${docs.dir}" classpath="${ant.jar.location}:${rhino.jar.location}" />
+	</target>
+
+	<target name="dist" description="Create a JAR of the JsDoc3 ant task" depends="compile, javadoc">
+		<jar destfile="${jar.location}">
+		    <fileset dir="${bin.dir}" />
+		    <manifest>
+		      <attribute name="Built-By" value="Jannon Frank"/>
+		    </manifest>
+		</jar>
+	</target>
+	
+	<!-- test jar -->
+	<target name="test" depends="dist" description="Run some tests using our newly create JAR">
+		
+		<echo>Using:</echo>
+		<echo> * Java:  ${ant.java.version}</echo>
+		<echo> * Ant:   ${ant.version}</echo>
+		<echo> * Rhino: ${rhino.version}</echo>
+		
+		<taskdef name="jsdoc3" classname="net.jannon.ant.tasks.JsDoc3" classpath="${jar.location}:${rhino.jar.location}"/>
+		
+		<!-- basic file test -->
+		<echo message="Testing basic file..."/>
+		<jsdoc3 jsdochome="${jsdoc.home}" 
+			to="${report.dir}/testone" 
+			file="${test.dir}/${test.file}" />
+		<echo message="Done."/>
+		
+		<!-- basic dir test -->
+		<echo message="Testing basic directory..."/>
+		<jsdoc3 jsdochome="${jsdoc.home}" 
+			to="${report.dir}/testtwo" 
+			dir="${test.dir}/" />
+		<echo message="Done."/>
+		
+		<!-- nested fileset element test -->
+		<echo message="Testing nested fileset..."/>
+		<jsdoc3 jsdochome="${jsdoc.home}" 
+			to="${report.dir}/testthree">
+			<fileset dir="${test.dir}/" />
+		</jsdoc3>
+		<echo message="Done."/>
+		
+		<!-- nested filelist element test --> 
+        <echo message="Testing nested filelist..."/>
+        <jsdoc3 jsdochome="${jsdoc.home}" 
+            to="${report.dir}/testfour">
+            <filelist dir="${test.dir}" files="test.js" />
+        </jsdoc3>
+        <echo message="Done."/>
+		
+		<!-- nested arg element test -->  
+		<echo message="Testing nested argument..."/>
+		<jsdoc3 jsdochome="${jsdoc.home}" 
+			to="${report.dir}/testfive" 
+			dir="${test.dir}">
+            <arg line="-X" />
+		</jsdoc3>
+		<echo message="Done."/>
+
+	</target>
+
+</project>
