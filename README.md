@@ -7,10 +7,9 @@ It allows users to use JSDoc3 in an ant build file.
 Prerequisites
 -------------
 
-You should have JSDoc3 installed somewhere.  The following fork contains the best version of JSDoc3 
-required (until pending pull requests get merged):
+You should have JSDoc3 installed somewhere.  
 
-https://github.com/jannon/jsdoc
+https://github.com/jsdoc3/jsdoc
 
 Installation
 ------------
@@ -101,8 +100,7 @@ Nested argument
 See Also
 --------
 
-- Required JSDoc3 Fork: https://github.com/jannon/jsdoc
-- Original JSDoc3 Project: https://github.com/micmath/jsdoc  
+- JSDoc3: https://github.com/jsdoc3/jsdoc\
 
 License
 -------
