@@ -100,8 +100,7 @@ Nested argument
 See Also
 --------
 
-- Required JSDoc3 Fork: https://github.com/jannon/jsdoc
-- Original JSDoc3 Project: https://github.com/micmath/jsdoc  
+- JSDoc3: https://github.com/jsdoc3/jsdoc\
 
 License
 -------
