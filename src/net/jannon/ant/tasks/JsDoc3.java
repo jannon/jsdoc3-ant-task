@@ -199,7 +199,13 @@ public class JsDoc3 extends Task {
 		arguments.add("-modules");
 		arguments.add(jsDocHome + "/node_modules");
 		arguments.add("-modules");
-		arguments.add(jsDocHome + "/rhino");
+
+		if (new File(jsDocHome + "/rhino").exists()) {
+			arguments.add(jsDocHome + "/rhino");
+		} else {
+			arguments.add(jsDocHome + "/rhino_modules");
+		}
+
 		arguments.add("-modules");
 		arguments.add(jsDocHome + "/lib");
 		arguments.add("-modules");
