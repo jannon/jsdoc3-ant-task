@@ -93,8 +93,7 @@ public class JsDoc3 extends Task {
 	 * @param jsDocHome a string representing the the home directory of JSDoc3
 	 */
 	public void setJsdochome(String jsDocHome) {
-		File f = new File(jsDocHome);
-		this.jsDocHome = f.getAbsolutePath();
+		this.jsDocHome = jsDocHome;
 	}
 
 	/**
