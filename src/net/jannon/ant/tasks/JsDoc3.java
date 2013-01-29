@@ -93,8 +93,7 @@ public class JsDoc3 extends Task {
 	 * @param jsDocHome a string representing the the home directory of JSDoc3
 	 */
 	public void setJsdochome(String jsDocHome) {
-		File f = new File(jsDocHome);
-		this.jsDocHome = f.getAbsolutePath();
+		this.jsDocHome = jsDocHome;
 	}
 
 	/**
@@ -199,7 +198,13 @@ public class JsDoc3 extends Task {
 		arguments.add("-modules");
 		arguments.add(jsDocHome + "/node_modules");
 		arguments.add("-modules");
-		arguments.add(jsDocHome + "/rhino");
+
+		if (new File(jsDocHome + "/rhino").exists()) {
+			arguments.add(jsDocHome + "/rhino");
+		} else {
+			arguments.add(jsDocHome + "/rhino_modules");
+		}
+
 		arguments.add("-modules");
 		arguments.add(jsDocHome + "/lib");
 		arguments.add("-modules");
