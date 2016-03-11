@@ -100,7 +100,7 @@ Nested argument
 See Also
 --------
 
-- JSDoc3: https://github.com/jsdoc3/jsdoc/
+- JSDoc3: https://github.com/jsdoc3/jsdoc
 
 License
 -------
